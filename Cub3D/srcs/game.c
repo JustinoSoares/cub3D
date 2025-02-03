@@ -6,7 +6,7 @@
 /*   By: amdos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:57:59 by amdos-sa          #+#    #+#             */
-/*   Updated: 2025/02/03 13:25:32 by amdos-sa         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:39:16 by amdos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	draw_line(t_game *game, t_player *player, float start_x, int i)
 	while (!touch(game, ray_x, ray_y))
 	{
 		if (DEBUG)
-			put_pixel(game, ray_x, ray_y, 0xFF0000);
+			put_pixel(game, ray_x, ray_y, 0xADD8E6);
 		ray_x += cos_angle;
 		ray_y += sin_angle;
 	}
@@ -113,7 +113,7 @@ void	draw_line(t_game *game, t_player *player, float start_x, int i)
 		end = start_y + height;
 		while (start_y < end)
 		{
-			put_pixel(game, i, start_y, 255);
+			put_pixel(game, i, start_y, 0xADD8E6);
 			start_y++;
 		}
 	}
@@ -130,11 +130,11 @@ int	draw_loop(t_game *game)
 	player = &game->player;
 	fraction = PI / 3 / WIDTH;
 	start_x = player->angle - PI / 6;
-	move_player(player);
+	move_player(game, player);
 	clear_image(game);
 	if (DEBUG)
 	{
-		draw_square(game, player->x, player->y, 10, 0x00FF00);
+		draw_square(game, player->x, player->y, 10, 0x39FF14);
 		draw_map(game);
 	}
 	while (i < WIDTH)

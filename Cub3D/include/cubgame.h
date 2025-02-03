@@ -6,7 +6,7 @@
 /*   By: amdos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:57:02 by amdos-sa          #+#    #+#             */
-/*   Updated: 2025/02/03 14:09:39 by amdos-sa         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:39:30 by amdos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ int		draw_loop(t_game *game);
 void	init_player(t_player *player);
 int		key_press(int keycode, t_player *player);
 int		key_release(int keycode, t_player *player);
-void	move_player(t_player *player);
+void	move_player(t_game *game, t_player *player);
 void	draw_map(t_game *game);
 char	**get_map(void);
+bool	touch(t_game *game, float px, float py);
 
 #endif
