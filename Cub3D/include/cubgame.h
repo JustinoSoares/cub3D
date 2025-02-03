@@ -6,7 +6,7 @@
 /*   By: amdos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:57:02 by amdos-sa          #+#    #+#             */
-/*   Updated: 2025/02/03 13:29:01 by amdos-sa         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:09:39 by amdos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct s_player
 	bool	key_left;
 	bool	left_rotate;
 	bool	right_rotate;
-	bool	right;
 }	t_player;
 
 typedef struct s_game

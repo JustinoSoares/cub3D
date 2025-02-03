@@ -6,7 +6,7 @@
 /*   By: amdos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:18:36 by amdos-sa          #+#    #+#             */
-/*   Updated: 2025/02/03 13:07:04 by amdos-sa         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:09:27 by amdos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,6 @@ void	move_player(t_player *player)
 		player->x += cos_angle * speed;
 		player->y += sin_angle * speed;
 	}
-	if (player->key_right)
-	{
-		player->x -= cos_angle * speed;
-		player->y += sin_angle * speed;
-	}
 	if (player->key_down)
 	{
 		player->x -= cos_angle * speed;
@@ -97,7 +92,12 @@ void	move_player(t_player *player)
 	}
 	if (player->key_left)
 	{
-		player->x += cos_angle * speed;
-		player->y -= sin_angle * speed;
+		player->x += sin_angle * speed;
+		player->y -= cos_angle * speed;
+	}
+	if (player->key_right)
+	{
+		player->x -= sin_angle * speed;
+		player->y += cos_angle * speed;
 	}
 }
