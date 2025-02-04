@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amdos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:03:33 by amdos-sa          #+#    #+#             */
-/*   Updated: 2025/02/03 09:03:51 by amdos-sa         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:59:04 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,23 @@ void	put_pixel(t_game *game, int x, int y, int color)
 	game->data[index + 1] = (color >> 8) & 0xFF;
 	game->data[index + 2] = (color >> 16) & 0xFF;
 }
+
+int	get_pixel(t_game *game, int x, int y)
+{
+	int	index;
+	int	color;
+
+	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
+		return (0); // Retorna preto se o pixel estiver fora dos limites
+	
+	index = y * game->size_line_tex + x * game->bpp_tex / 8;
+	color = (game->data_tex[index] & 0xFF) | 
+			((game->data_tex[index + 1] & 0xFF) << 8) | 
+			((game->data_tex[index + 2] & 0xFF) << 16);
+	
+	return (color);
+}
+
 
 void	clear_image(t_game *game)
 {

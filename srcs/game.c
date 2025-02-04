@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amdos-sa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:57:59 by amdos-sa          #+#    #+#             */
-/*   Updated: 2025/02/03 14:39:16 by amdos-sa         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:44:27 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	init_cub3d(t_game *game)
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cub3D");
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->size_line, &game->endian);
+	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->size_line,
+			&game->endian);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 }
 
@@ -37,7 +38,7 @@ void	draw_square(t_game *game, int x, int y, int size, int color)
 	while (i < size)
 	{
 		put_pixel(game, x + size, y + i, color);
-			i++;
+		i++;
 	}
 	i = 0;
 	while (i < size)
@@ -86,14 +87,16 @@ float	fixed_dist(t_game *game, float x1, float y1, float x2, float y2)
 
 void	draw_line(t_game *game, t_player *player, float start_x, int i)
 {
-	float		ray_x;
-	float		ray_y;
-	float		cos_angle;
-	float		sin_angle;
-	float		dist;
-	float		height;
-	float		start_y;
-	int			end;
+	float	ray_x;
+	float	ray_y;
+	float	cos_angle;
+	float	sin_angle;
+	float	dist;
+	float	height;
+	float	start_y;
+	int		end;
+	int		color;
+
 	ray_x = player->x;
 	ray_y = player->y;
 	cos_angle = cos(start_x);
@@ -113,7 +116,8 @@ void	draw_line(t_game *game, t_player *player, float start_x, int i)
 		end = start_y + height;
 		while (start_y < end)
 		{
-			put_pixel(game, i, start_y, 0xADD8E6);
+			color = get_pixel(game, i % 32, (int)start_y % 32);
+			put_pixel(game, i, start_y, color);
 			start_y++;
 		}
 	}
