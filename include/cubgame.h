@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:57:02 by amdos-sa          #+#    #+#             */
-/*   Updated: 2025/02/04 15:04:31 by jsoares          ###   ########.fr       */
+/*   Updated: 2025/02/10 16:31:29 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
-# define SBLOCK 64
-# define DEBUG 0
+# define SBLOCK 54
+# define DEBUG 1
 
 # define W 119
 # define A 97

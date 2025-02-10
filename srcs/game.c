@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:57:59 by amdos-sa          #+#    #+#             */
-/*   Updated: 2025/02/04 15:44:27 by jsoares          ###   ########.fr       */
+/*   Updated: 2025/02/10 15:18:09 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	draw_line(t_game *game, t_player *player, float start_x, int i)
 		end = start_y + height;
 		while (start_y < end)
 		{
-			color = get_pixel(game, i % 32, (int)start_y % 32);
+			color = get_pixel(game, i % 128, (int)start_y % 128);
 			put_pixel(game, i, start_y, color);
 			start_y++;
 		}

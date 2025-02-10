@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:56:52 by amdos-sa          #+#    #+#             */
-/*   Updated: 2025/02/04 15:44:40 by jsoares          ###   ########.fr       */
+/*   Updated: 2025/02/10 15:17:49 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ int	handle_close(void *params)
 
 int	main(void)
 {
+	int h, w;
+	char *url;
+	 
 	t_game	game;
 	init_cub3d(&game);
-	int h, w; 
 	h = w = 0;
-	game.textura = mlx_xpm_file_to_image(game.mlx, "./img/Floor_1.xpm", &w, &h);
+	url = "./img/E.xpm";
+	game.textura = mlx_xpm_file_to_image(game.mlx, url, &w, &h);
 	game.data_tex = mlx_get_data_addr(game.textura, &game.bpp_tex, &game.size_line_tex, &game.endian_tex);
 	mlx_hook(game.win, 2, 1L<<0, key_press, &game.player);
 	mlx_hook(game.win, 3, 1L<<1, key_release, &game.player);
