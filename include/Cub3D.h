@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:34:47 by rquilami          #+#    #+#             */
-/*   Updated: 2025/05/08 13:26:13 by jsoares          ###   ########.fr       */
+/*   Updated: 2025/05/09 13:56:05 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <math.h>
 #include <string.h>
+#include <stdbool.h>
 #include "../mlx/mlx.h"
 #include "../get_next_line/get_next_line.h"
 
@@ -26,9 +27,15 @@
 #define WIDTH 1200
 #define HEIGHT 900
 #define BLOCK 32
+#define BLOCKER 32
 #define MAP_WIDTH 9
 #define MAP_HEIGHT 6
 #define PI 3.14159265
+
+#define W 119
+#define A 97
+#define S 115
+#define D 100
 
 typedef struct s_data
 {
@@ -45,6 +52,11 @@ typedef struct s_player
 {
 	int x;
 	int y;
+
+	bool key_up;
+	bool key_down;
+	bool key_left;
+	bool key_right;
 } t_player;
 
 typedef struct s_core
@@ -74,5 +86,8 @@ void free_mtx(char **map);
 int find_player(int *px, int *py, t_data *data);
 int close_window(t_core *core);
 int keyCall(int key, t_core *core);
-
+int key_realise(int key, t_core *core);
+void move_player(t_core *core);
+void init_player(t_player *player);
+void draw_square(int x, int y, int size, int color, t_core *core);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rquilami <rquilami@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:14:44 by rquilami          #+#    #+#             */
-/*   Updated: 2025/05/05 16:30:57 by rquilami         ###   ########.fr       */
+/*   Updated: 2025/05/09 10:33:58 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void put_pixel(t_core *core, int x, int y, int color)
 {
     char *pixel;
-
+    if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
+        return;
     pixel = core->addr + (y * core->line_size + x * (core->bpp / 8));
     *(unsigned int *)pixel = color;
 }
-
-void    print_window(t_core *core)
+void print_window(t_core *core)
 {
     int x;
     int y;
@@ -41,7 +41,6 @@ void    print_window(t_core *core)
             x++;
         }
         x = 0;
-        y++;       
+        y++;
     }
 }
-

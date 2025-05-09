@@ -6,7 +6,7 @@
 /*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 14:19:17 by rquilami          #+#    #+#             */
-/*   Updated: 2025/05/08 16:06:26 by jsoares          ###   ########.fr       */
+/*   Updated: 2025/05/09 13:55:20 by jsoares          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void draw_map(t_core *core)
                     while (j < BLOCK)
                     {
                         put_pixel(core, x * BLOCK + j, y * BLOCK + i, 0xFFFFFF);
+                        draw_square(x * BLOCKER, y * BLOCKER, BLOCKER, 0xff00ff, core);
                         j++;
                     }
                     i++;
@@ -51,8 +52,8 @@ void dda(float angle, t_core *core)
     float dx = cos(angleRad);
     float dy = sin(angleRad);
     
-    float x = core->px + 0.5f;
-    float y = core->py + 0.5f;
+    float x = core->player.x + 0.5f;
+    float y = core->player.y + 0.5f;
     while (1)
     {
         int px = (int)x;
@@ -67,16 +68,15 @@ void dda(float angle, t_core *core)
         x += dx * 0.1f;
         y += dy * 0.1f;
     }
-
 }
 
 void vision_player(t_core *core, float initAngle)
 {
-    find_player(&core->px, &core->py, &core->data);
+    find_player(&core->player.x, &core->player.y, &core->data);
     float angle;
 
     angle = initAngle - 30;
-    while (angle <= initAngle + 30) 
+    while (angle <= initAngle + 30)
     {
         dda(angle, core);
         angle += 0.1f;
