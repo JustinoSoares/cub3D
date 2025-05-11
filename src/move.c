@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:36:05 by rquilami          #+#    #+#             */
-/*   Updated: 2025/05/09 12:53:49 by jsoares          ###   ########.fr       */
+/*   Updated: 2025/05/11 02:25:50 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,29 +62,32 @@ int keyCall(int key, t_core *core)
         printf("clicou em a\n");
     }
 
-    if (key == 65361) // seta esquerda - mesma ação do 'a'
+    if (key == LEFT) // seta esquerda - mesma ação do 'a'
     {
         printf("clicou em <\n");
-        core->data.initAngle -= 5;
+        core->data.initAngle -= 0.1f;
         if (core->data.initAngle < 0)
-            core->data.initAngle += 360;
+             core->data.initAngle += 360;
+        core->player.key_rot_left = true;
     }
 
-    if (key == 65363) // seta direita - mesma ação do 'd'
+    if (key == RIGHT) // seta direita - mesma ação do 'd'
     {
         printf("clicou em >\n");
-        core->data.initAngle += 5;
-        if (core->data.initAngle >= 360)
-            core->data.initAngle -= 360;
+        core->player.key_rot_right = true;
+         core->data.initAngle += 0.1f;
+         if (core->data.initAngle >= 360)
+             core->data.initAngle -= 360;
     }
 
     // 💥 limpa a imagem (cor de fundo: preto, ou outro se quiser)
     //clear_image(core, 0x000000);
-   /* print_window(core);
-    // redesenha tudo com estado atualizado
+    /* print_window(core);
     vision_player(core, core->data.initAngle);
+    // redesenha tudo com estado atualizado
     draw_map(core);
     mlx_put_image_to_window(core->mlx, core->win, core->img, 0, 0);*/
+    //draw_square(WIDTH / 2, HEIGHT / 2, 10, 0x00ffff, core);
     return (0);
 }
 
@@ -112,6 +115,20 @@ int key_realise(int key, t_core *core)
     {
         core->player.key_right = false;
         printf("release em a\n");
+    }
+    if (key == LEFT) // seta esquerda - mesma ação do 'a'
+    {
+        printf("realise em <\n");
+        core->player.key_rot_left = false;
+    }
+
+    if (key == RIGHT) // seta direita - mesma ação do 'd'
+    {
+        printf("relise em >\n");
+        core->player.key_rot_right = false;
+        // core->data.initAngle += 5;
+        // if (core->data.initAngle >= 360)
+        //     core->data.initAngle -= 360;
     }
     return 0;
 }

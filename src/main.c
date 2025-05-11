@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:41:46 by rquilami          #+#    #+#             */
-/*   Updated: 2025/05/09 13:52:10 by jsoares          ###   ########.fr       */
+/*   Updated: 2025/05/11 02:21:38 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,14 @@ void clear_images(t_core *core)
 int draw_loop(void *param)
 {
     t_core *core = (t_core *)param;
-    //t_player *player = &core->player;
+    t_player *player = &core->player;
     move_player(core);
     clear_images(core);
-    print_window(core);
+    //print_window(core);
+    //printf("ponto x %d y %d\n", player->x, player->y);
     draw_map(core);
+    draw_square(player->x * BLOCKER, player->y * BLOCKER, 10, 0x00ffff, core);
+    vision_player(core, core->data.initAngle);
     mlx_put_image_to_window(core->mlx, core->win, core->img, 0, 0);
     return 0;
 }
@@ -63,8 +66,8 @@ int main(int argc, char *argv[])
     init_config(core);
     core->data.initAngle = 0;
     ft_readmap(argv[1], &core->data);
-    //draw_square(WIDTH / 2, HEIGHT / 2, 10, 0x00ff00, core);
-    init_player(&core->player);
+    //draw_square(WIDTH / 2, HEIGHT / 2, 10, 0x00ffff, core);
+    init_player(&core->player, &core->data);
     //print_window(core);
     //draw_map(core);
     vision_player(core, core->data.initAngle);

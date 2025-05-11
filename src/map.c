@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 10:31:22 by rquilami          #+#    #+#             */
-/*   Updated: 2025/05/08 16:06:37 by jsoares          ###   ########.fr       */
+/*   Updated: 2025/05/10 22:57:55 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Cub3D.h"
 
-void	getLines_and_Column(char *file, t_data *data)
+void getLines_and_Column(char *file, t_data *data)
 {
-	int		i;
-	int		fd;
-	char	*tmp;
+	int i;
+	int fd;
+	char *tmp;
 
 	i = 0;
 	fd = open(file, O_RDONLY);
@@ -32,10 +32,10 @@ void	getLines_and_Column(char *file, t_data *data)
 	close(fd);
 }
 
-void	ft_readmap(char *file, t_data *data)
+void ft_readmap(char *file, t_data *data)
 {
-	int		fd;
-	int		i;
+	int fd;
+	int i;
 
 	fd = open(file, O_RDONLY);
 	getLines_and_Column(file, data);
@@ -49,7 +49,7 @@ void	ft_readmap(char *file, t_data *data)
 	data->map[i] = get_next_line(fd);
 	if (!data->map[i])
 		(free_mtx(data->map), (close(fd),
-				 exit(-1)));
+							   exit(-1)));
 	while (data->map[i])
 	{
 		i++;
@@ -59,29 +59,29 @@ void	ft_readmap(char *file, t_data *data)
 	printf("Mapa lido com sucesso, column: %i, lines: %i", data->column_map, data->lines_map);
 }
 
-int find_player(int *px, int *py, t_data *data)
+int find_player(t_data *data)
 {
-    int y = 0;
-    int x = 0;
-    while (y < data->column_map)
-    {
-        x = 0;
-        while (x < data->lines_map)
-        {
-            if (data->map[y][x] == 'N' || data->map[y][x] == 'E' || data->map[y][x] == 'W' || data->map[y][x] == 'S')
-            {
-                *px = x;
-                *py = y;
-                return 1;
-            }
-            x++;
-        }
-        y++;
-    }
-    return 0;
+	int y = 0;
+	int x = 0;
+	while (y < data->column_map)
+	{
+		x = 0;
+		while (x < data->lines_map)
+		{
+			if (data->map[y][x] == 'N' || data->map[y][x] == 'E' || data->map[y][x] == 'W' || data->map[y][x] == 'S')
+			{
+				data->x = x;
+				data->y = y;
+				return 1;
+			}
+			x++;
+		}
+		y++;
+	}
+	return 0;
 }
 
-int	ft_getAngle(char c)
+int ft_getAngle(char c)
 {
 	if (c == 'N')
 		return (270);

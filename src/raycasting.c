@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsoares <jsoares@student.42.fr>            +#+  +:+       +#+        */
+/*   By: justinosoares <justinosoares@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 14:19:17 by rquilami          #+#    #+#             */
-/*   Updated: 2025/05/09 13:55:20 by jsoares          ###   ########.fr       */
+/*   Updated: 2025/05/11 00:35:25 by justinosoar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void draw_map(t_core *core)
                     j = 0;
                     while (j < BLOCK)
                     {
-                        put_pixel(core, x * BLOCK + j, y * BLOCK + i, 0xFFFFFF);
                         draw_square(x * BLOCKER, y * BLOCKER, BLOCKER, 0xff00ff, core);
+                        //put_pixel(core, x * BLOCK + j, y * BLOCK + i, 0xFFFFFF);
                         j++;
                     }
                     i++;
@@ -72,11 +72,10 @@ void dda(float angle, t_core *core)
 
 void vision_player(t_core *core, float initAngle)
 {
-    find_player(&core->player.x, &core->player.y, &core->data);
+    find_player(&core->data);
     float angle;
-
-    angle = initAngle - 30;
-    while (angle <= initAngle + 30)
+    angle = initAngle - 0;
+    while (angle <= initAngle + 0)
     {
         dda(angle, core);
         angle += 0.1f;
